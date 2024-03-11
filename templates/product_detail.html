@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% block "main" %}
+
+<div class="row">
+    <div class="col-md-8 mt-5 mx-auto">
+      {% if msg_success %}
+      <div class="alert alert-success">
+        {{msg_success}}
+      </div>
+      {% endif %}
+
+      {% if msg_alert %}
+      <div class="alert alert-danger">
+        {{msg_alert}}
+      </div>
+      {% endif %}
+
+
+      <div class="row">
+        {% for i in prod %}
+        <div class="col-md-6">
+          <img src="{{i.p_img.url}}"  height="300px" width="100%" class="card-img-top" alt="...">
+
+
+        </div>
+        <div class="col-md-6 mt-3 ">
+          <h5>Product details</h5><hr>
+          <p><strong>Product Name:</strong>{{i.name}}</p>
+          <p><strong>Category:</strong>{{i.cat}}</p>
+          <p><strong>Price:</strong>{{i.price}}</p>
+          <p><strong>Product Details:</strong>{{i.product_details}}</p>
+          <a href="/cart/{{i.id}}" class="anchor"><button class="btn btn-danger">Add to Cart</button></a>
+          <a href="/viewcart" class="anchor"><button class="btn btn-danger">View Cart</button></a>
+
+          <a href="/" class="anchor"><button class="btn btn-danger">Shop More</button></a>
+
+
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+</div>
+{% endblock "main" %}

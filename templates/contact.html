@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block "main" %}
+<style>
+    .map-container {
+        text-align: center;
+    }
+
+    .map-container iframe {
+        display: inline-block;
+        margin: 0 auto;
+    }
+</style>
+
+<div class="map-container">
+    
+    <h1>Our Offline Store </h1>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.205510033853!2d73.83845847501576!3d18.519612969203845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf3ec1207915%3A0xb73335cd0d52335c!2sItvedant%20Pvt%20Ltd%20Pune!5e0!3m2!1sen!2sus!4v1706686015763!5m2!1sen!2sus" width="1200" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+{% endblock "main" %}

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block "main" %}
+
+
+<div class="row shadow">
+  <div class="col-md-3 ">
+  </div> <!--Side bar-->
+  <div class="row m-3 shadow">
+    <div class="col-md-3 mt-3 p-3 bg-light">
+      <h5>Filter By Category</h5>
+      <hr>
+      <a href="/" class="anchor">All</a><br>
+      <a href="/catfilter/1" class="anchor">Mobile</a><br>
+      <a href="/catfilter/2" class="anchor">Shoes</a><br>
+      <a href="/catfilter/3" class="anchor">Clothes</a><br>
+
+      <h5>Sort By Price</h5>
+      <hr>
+      <a href="/sort/1" class="anchor">High To Low</a><br>
+      <a href="/sort/0" class="anchor">Low To High</a><br><br>
+
+      <h5>Filter By Price</h5>
+      <hr>
+      <form method="GET" action="/filterbyprice">
+
+        <div class="mb-3">
+
+          <label for="input1" class="form-label">Min</label>
+
+          <input type="number" class="form-control" name="min" id="Input1" placeholder="Minimum Price">
+
+        </div>
+
+        <div class="mb-3">
+
+          <label for="input2" class="form-label">max</label>
+
+          <input type="number" class="form-control" name="max" id="Input2" placeholder="Maximum Price">
+
+        </div>
+
+        <div class="mb-3">
+          <input type="submit" class="btn btn-danger" value="search">
+
+        </div>
+      </form>
+
+    </div><!--side bar-->
+
+    <div class="col-md-9 px-4">
+      <div class="row">
+        {% for i in prod %}
+        <div class="col-md-3 ">
+          <div class="card">
+            <img src="{{i.p_img.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{i.name}}</h5>
+              {% if i.cat == 1 %}
+              <p class="card-text">Mobile</p>
+              {% elif i.cat == 2 %}
+              <p class="card-text">Shoes</p>
+              {% else %}
+              <p class="card-text">Clothes</p>
+              {% endif %}
+
+              <p class="card-text">{{i.price}}</p>
+              <p class="card-text">{{i.cat}}</p>
+              <a href="/product_detail/{{i.id}}" class="btn btn-primary">See Details</a>
+            </div>
+          </div>
+        </div>
+
+      {% endfor %}
+    </div> <!--Product List-->
+
+
+
+  </div>
+
+</div> <!--main row close-->
+
+{% endblock "main" %}
