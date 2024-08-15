@@ -113,9 +113,9 @@ def user_login(request):
         return render(request, "login.html")
 
 
-def user_logout(request):
+def logout(request):
     logout(request)
-    return redirect("/login")
+    return redirect("/logout")
 
 
 def place_order(request):
@@ -152,12 +152,13 @@ def cart(request,pid):
             return render(request,"product_detail.html",context)
         
     else:
-        return redirect("/user_login")
+        return redirect("/login")
             
             
             
 def view_cart(request):
     c=Cart.objects.filter(user_id=request.user.id)
+    u = User.objects.filter(id= request.user.id)
     tot=0
     for x in c:
         tot=tot+x.pid.price*x.qty
@@ -165,6 +166,8 @@ def view_cart(request):
     context["prod"]=c
     context["tot"]=tot
     context['n']=len(c)
+    context['name']=u[0].first_name + ' ' + u[0].last_name
+    context['uname']=u[0].username
     return render(request,"cart.html",context)
 
 
@@ -199,6 +202,9 @@ def placeorder(request):
 
 def fetchorder(request):
     o=Order.objects.filter(user_id = request.user.id)
+    u = User.objects.filter(id= request.user.id)
+    # u.create(contact = 739)
+    # u.update()
     tot=0
     for x in o:
         tot=tot+x.amt
@@ -206,6 +212,9 @@ def fetchorder(request):
     context['prod']=o
     context['total']=tot
     context['n']=len(o)
+    context['name']=u[0].first_name + ' ' + u[0].last_name
+    context['uname']=u[0].username
+    # context['contact']=u[0].contact
     return render(request,"placeorder.html",context)
     
     

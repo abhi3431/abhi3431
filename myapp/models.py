@@ -9,7 +9,7 @@ class Product(models.Model):
     cat = models.IntegerField(verbose_name="Category",choices=CAT)
     product_details = models.CharField(max_length=500 , verbose_name="Product Details")
     is_active = models.BooleanField(default=True, verbose_name="Available")
-    img = models.ImageField(upload_to='product_images', default='default_image.jpg')
+    p_img = models.ImageField(upload_to='product_images', default='default_image.jpg')
 
     # def __str__(self):
     #     return self.name
